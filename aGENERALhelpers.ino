@@ -1,3 +1,5 @@
+#include "variables/variables.h"
+
 void resetVariables()
 {
   sumAccZ = 0;
@@ -135,9 +137,9 @@ bool submitValues()
   {
     // close any connection before send a new request.
     // This will free the socket on the WiFi shield
-    if (client.connected())
+    if (wifiClient.connected())
     {
-      client.stop();
+      wifiClient.stop();
       delay(1000);
     }
     bool connected = false;
@@ -145,7 +147,7 @@ bool submitValues()
     strcpy_P(_server, server);
     for (uint8_t timeout = 2; timeout != 0; timeout--)
     {
-      connected = client.connect(_server, port);
+      connected = wifiClient.connect(_server, port);
       if (connected == true)
       {
         myFile = SD.open(fileNames[i]);
@@ -163,35 +165,35 @@ bool submitValues()
         Serial.print(header);
 #endif
         // send the HTTP POST request:
-        client.print(header);
+        wifiClient.print(header);
         writeMeasurementsToClient(fileNames[i]);
         // send empty line to end the request
-        client.println();
+        wifiClient.println();
         uint16_t timeout = 0;
         // allow the response to be computed
         while (timeout <= 20000)
         {
           delay(10);
           timeout = timeout + 10;
-          if (client.available())
+          if (wifiClient.available())
           {
             break;
           }
         }
-        while (client.available())
+        while (wifiClient.available())
         {
-          char c = client.read();
+          char c = wifiClient.read();
 #ifdef DEBUG_ENABLED
           Serial.print(c);
 #endif
           // if the server's disconnected, stop the client:
-          if (!client.connected())
+          if (!wifiClient.connected())
           {
 #ifdef DEBUG_ENABLED
             Serial.println();
             Serial.println(F("disconnecting from server."));
 #endif
-            client.stop();
+            wifiClient.stop();
             break;
           }
         }
@@ -225,7 +227,7 @@ void writeMeasurementsToClient(char* fileName) {
   while (myFile.available()) {
     char c = myFile.read();
     if (c == '\n') {
-      client.print(line);
+      wifiClient.print(line);
 #ifdef DEBUG_ENABLED
       Serial.print(line);
 #endif
