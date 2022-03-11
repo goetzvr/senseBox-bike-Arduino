@@ -1,15 +1,17 @@
 #include "variables/variables.h"
 
-//#define DEBUG_ENABLED
+// #define DEBUG_ENABLED
 
 void setup()
 {
 
 #ifdef DEBUG_ENABLED
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial)
     ;
   Serial.println("Starting");
+  Serial.print("Sketch version ");
+  Serial.println(VERSION);
 #endif
 
   senseBoxIO.powerNone();
@@ -39,6 +41,10 @@ void setup()
   //resetSD();
   rgb_led_1.begin();
   rgb_led_1.setBrightness(30);
+
+  // check for OTA Firmware and configuration.
+  handleOtaDownload(VERSION);
+  showRed();
 }
 
 void loop()

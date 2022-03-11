@@ -7,12 +7,15 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
 
+#include "version.h" // Version for OTA
+
 /// LIBRARIES
 #include <BMX055.h>
 #include <senseBoxIO.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <WiFi101.h>
+#include <ArduinoHttpClient.h>
 #include <SparkFun_u-blox_GNSS_Arduino_Library.h> //http://librarymanager/All#SparkFun_u-blox_GNSS
 #include <NewPing.h>
 #include <Adafruit_GFX.h>
@@ -43,7 +46,7 @@ const int port = 80;
 #define Addr_Gyro 0x68
 #define Addr_Mag 0x10
 // Object definitions
-WiFiClient client;
+WiFiClient wifiClient;
 Adafruit_HDC1000 HDC = Adafruit_HDC1000();
 SDS011 SDS(Serial1);
 SFE_UBLOX_GNSS myGNSS;
@@ -130,4 +133,7 @@ bool submitValues(void);
 void showRed(void);
 void showBlue(void);
 void showGreen(void);
+void handleOtaDownload(int version);
+void handleCfgDownload(HttpClient client, int version);
+void handleSketchDownload(HttpClient client, int version);
 #endif

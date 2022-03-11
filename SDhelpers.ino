@@ -186,6 +186,24 @@ boolean readConfiguration( char* configFile )
       Serial.print("Read SPEED_ID: ");
       Serial.println(speedID);
 #endif      
+    } else if (cfg.nameIs("OTA_URL")) {
+      otaURL = cfg.copyValue();
+#ifdef DEBUG_ENABLED
+      Serial.print("Read OTA_URL: ");
+      Serial.println(otaURL);
+#endif      
+    } else if (cfg.nameIs("OTA_PATH")) {
+      otaPath = cfg.copyValue();
+#ifdef DEBUG_ENABLED
+      Serial.print("Read OTA_PATH: ");
+      Serial.println(otaPath);
+#endif      
+    } else if (cfg.nameIs("OTA_PORT")) {
+      otaPort = cfg.copyValue();
+#ifdef DEBUG_ENABLED
+      Serial.print("Read OTA_PORT: ");
+      Serial.println(otaPort);
+#endif
     } else {
       // report unrecognized names.
 #ifdef DEBUG_ENABLED
@@ -215,4 +233,7 @@ void dumpConfiguration()
   Serial.print("ACC_Y_ID:    "); Serial.println(accYID);
   Serial.print("ACC_Z_ID:    "); Serial.println(accZID);
   Serial.print("SPEED_ID:    "); Serial.println(speedID);
+  Serial.print("OTA_URL:     "); Serial.println(otaURL);
+  Serial.print("OTA_PORT:    "); Serial.println(otaPort);
+  Serial.print("OTA_PATH:    "); Serial.println(otaPath);
 }

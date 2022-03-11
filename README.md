@@ -14,6 +14,8 @@ Mobile Messstation mit der Temperatur, rel. Luftfeuchte, Feinstaub (PM10, PM25),
   - [BMX](https://github.com/sensebox/BMX)
   - [SD](https://www.arduino.cc/en/Reference/SD "SD") For Linux systems
   - [SDConfig](https://github.com/Fuzzer11/SDconfig)
+  - [ArduinoOTA](tbd)
+  - [ArduinoHttpClient](tbd)
   
 ## Credentials hinzufügen 
 Mit Hilfe der [openSenseMapAPI](https://api.opensensemap.org/) kannst du die Sensor IDs deiner Box abfragen. Der API call lautet `https://api.opensensemap.org/boxes/[:senseBoxID]`.

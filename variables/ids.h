@@ -21,3 +21,8 @@ char *accXID = "undef";
 char *accYID = "undef";
 char *accZID = "undef";
 char *speedID = "undef";
+
+// OTA Stuff
+char *otaURL  = "undef";
+char *otaPort = "undef";
+char *otaPath = "undef";

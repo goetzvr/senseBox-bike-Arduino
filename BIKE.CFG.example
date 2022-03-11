@@ -18,3 +18,11 @@ ACC_X_ID=
 ACC_Y_ID=
 ACC_Z_ID=
 SPEED_ID=
+
+# Firmwareupdate OverTheAir
+# Bei einer bestehenden WifiVerbindung:
+# Nach dem hochladen der Daten, schaue auf OTA_URL ob eine neue Firmware Version vorliegt. Die Datei ist in der jetzigen Version SENSEBOX_ID-vN.bin wobei n=eine Zahl grösser 1 ist. 
+# beim Update wird die interner Variable VERSION mit N Verglichen und bei N >= VERSION+1 geupdated. 
+Optional kann auch eine neue BIKE.CFG geladen werden. Das Namensschema ist hier SENSEBOX_ID-vN.cfg
+Die Box booted dann neu und sucht nach einem neuem Update. Wenn kein Wifi oder kein weiteres Update gefunden wird, geht die Box in den 'Normalbetrieb'
+OTA_URL=https://raspberrypi.fritz.box:8585/ota/
