@@ -2,7 +2,7 @@
 
 firmware="${HOME}/.cache/arduino/futuriumSDNoAp.ino.bin"
 # firmware="futuriumSDNoAp.ino.sensebox_mcu.bin"
-version=${1}
+version=$(grep VERSION variables/version.h | cut -d' ' -f3)
 bikebox=$(grep SENSEBOX_ID= BIKE.CFG |cut -d'=' -f2)
 host=$(grep OTA_URL= BIKE.CFG |cut -d'=' -f2)
 path="html"
