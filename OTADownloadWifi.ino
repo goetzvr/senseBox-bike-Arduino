@@ -30,7 +30,6 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
   Serial.print(urlBuf);
   Serial.println("]");
 #endif
-
   // Make the GET request
   client.get(urlBuf);
 
@@ -45,6 +44,14 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
     client.stop();
     return;
   }
+
+  // Show LED Blink if FW was found
+  showYellow();
+  delay(700);
+  showBlue();
+  delay(700);
+  showYellow();
+
 
   long length = client.contentLength();
   if (length == HttpClient::kNoContentLengthHeader) {
@@ -94,6 +101,14 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
   Serial.println("OTA: Sketch update apply and reset.");
   Serial.flush();
 #endif
+
+  showRed();
+  delay(700);
+  showYellow();
+  delay(700);
+  showRed();
+  delay(700);
+  showYellow();
 
   InternalStorage.apply(); // this doesn't return
 }
