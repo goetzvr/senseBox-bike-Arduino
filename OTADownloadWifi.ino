@@ -48,7 +48,7 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
   // Show LED Blink if FW was found
   showYellow();
   delay(700);
-  showBlue();
+  showGreen();
   delay(700);
   showYellow();
 
@@ -77,12 +77,12 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
   }
   byte b;
   while (length > 0) {
-    showRed();
+    showGreen();
     if (!client.readBytes(&b, 1)) // reading a byte with timeout
       break;
     InternalStorage.write(b);
     length--;
-    showBlue();
+    showYellow();
   }
   InternalStorage.close();
   client.stop();
@@ -102,11 +102,12 @@ void handleSketchDownload(HttpClient client, int fwVersion) {
   Serial.flush();
 #endif
 
-  showRed();
-  delay(700);
   showYellow();
   delay(700);
-  showRed();
+  showGreen();
+  delay(700);
+  showYellow();
+  showGreen();
   delay(700);
   showYellow();
 
